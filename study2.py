@@ -10,7 +10,7 @@ HEADER = {
     ' Gecko/20100101 Firefox/106.0',
 }
 
-SAVE_DIRECTORY = r'../cool18_download'
+SAVE_DIRECTORY = r'./cool18_download'
 
 # when opening the vpn, call this function 
 def get_correct_proxies():
@@ -131,10 +131,9 @@ def create_folder_as_per(foldername):
 
 
 def rilla_save(path, para, url):
+    paragraph_with_footer = para + '\n' + '\n' + '页面来源： ' + url
     with open(path, 'wt', encoding='utf-8') as f:
-        f.write(para)
-    with open(path + ".url", 'wt', encoding='utf-8') as f:
-        f.write(url)
+        f.write(paragraph_with_footer)
 
 
 def rename_and_savetext(folder, txt_name, para, url):
@@ -316,8 +315,8 @@ def crawl(header):
                                         secondary_folder_path, second_txt_name, body_text, second_level)
                             except:
                                 print("算了，跳过不理")
-            except Exception as e:
-                print(f"{article}挂了，先记下来，回头再算账",e)
+            except:
+                print(f"{article}挂了，先记下来，回头再算账")
                 failed_log_list.append(article)
                 for line in failed_log_list:
                     with open('try_later.txt', 'a', encoding='utf-8') as fd:
