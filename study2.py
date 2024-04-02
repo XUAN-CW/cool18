@@ -131,7 +131,7 @@ def create_folder_as_per(foldername):
 
 
 def rilla_save(path, para, url):
-    paragraph_with_footer = para + '\n' + '\n' + '页面来源： ' + url
+    paragraph_with_footer = para + '\n\n' + f'[页面来源]({url})'
     with open(path, 'wt', encoding='utf-8') as f:
         f.write(paragraph_with_footer)
 
