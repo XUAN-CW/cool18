@@ -10,7 +10,7 @@ HEADER = {
     ' Gecko/20100101 Firefox/106.0',
 }
 
-SAVE_DIRECTORY = r'D:\Rilla\cool18'
+SAVE_DIRECTORY = r'./cool18_download'
 
 # when opening the vpn, call this function 
 def get_correct_proxies():
@@ -324,5 +324,11 @@ def crawl(header):
 
 
 if __name__ == '__main__':
+
+
+# Check if the directory does not exist
+    if not os.path.exists(SAVE_DIRECTORY):
+        # Create the directory
+        os.makedirs(SAVE_DIRECTORY)
     os.chdir(SAVE_DIRECTORY)
     crawl(HEADER)
