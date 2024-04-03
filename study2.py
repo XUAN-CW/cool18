@@ -134,31 +134,31 @@ def create_folder_as_per(foldername):
         print(f"{foldername}文件夹已经存在")
 
 
-def rilla_save(path, para, url):
+def rilla_save(path, para, url,html):
     paragraph_with_footer = para + '\n\n' + f'[页_面_来_源]({url})'
     with open(path, 'wt', encoding='utf-8') as f:
         f.write(paragraph_with_footer)
 
 
-def rename_and_savetext(folder, txt_name, para, url):
+def rename_and_savetext(folder, txt_name, para, url,html):
     '''
     以页面的标题作为文件夹的名字，把所有的txt保存在这个文件夹内
     '''
     txt_path = os.path.join(folder, txt_name)
     if not os.path.exists(txt_path):
-        rilla_save(txt_path, para, url)
+        rilla_save(txt_path, para, url,html)
     else:
         print(f"啊哦，想要下载的文件 {txt_path} 已经有了，加个_2")
         auto_rename_2 = txt_path[:-4] + '_2' + '.txt'
         if not os.path.exists(auto_rename_2):
             print(f"新文件将被命名为{auto_rename_2}")
-            rilla_save(auto_rename_2, para, url)
+            rilla_save(auto_rename_2, para, url,html)
         else:
             print(
                 f"啊哦，想要下载的文件 {auto_rename_2} 已经有了，算了，用url来命名吧。")
             giveup_name = url.split('tid=')[-1] + '.txt'
             giveup_path = "".join([auto_rename_2[:-4], '_', giveup_name])
-            rilla_save(giveup_path, para, url)
+            rilla_save(giveup_path, para, url,html)
 
 
 def hyperlink_extractor(url, header):
@@ -257,7 +257,7 @@ def crawl(header):
                     if len(para) >= 1000 or postlist:
                         create_folder_as_per(top_title)
                         rename_and_savetext(
-                            top_title, top_title + '.txt', para, article)
+                            top_title, top_title + '.txt', para, article,top_soup)
                 else:
                     print("空空如也，不值得保存，跳过。")
                     break
@@ -283,7 +283,7 @@ def crawl(header):
                     if paragraph:
                         # 将正文保存为文本
                         rename_and_savetext(
-                            top_title, txt_name, paragraph, posturl)
+                            top_title, txt_name, paragraph, posturl,soup)
                     else:
                         print("空空如也，跳过。")
                         break
@@ -316,7 +316,7 @@ def crawl(header):
                                 body_text = extract_text(second_soup)
                                 if body_text:
                                     rename_and_savetext(
-                                        secondary_folder_path, second_txt_name, body_text, second_level)
+                                        secondary_folder_path, second_txt_name, body_text, second_level,second_soup)
                             except:
                                 print("算了，跳过不理")
             except Exception as e:
