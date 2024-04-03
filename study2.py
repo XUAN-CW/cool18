@@ -139,7 +139,7 @@ def rilla_save(path, para, url,html):
     with open(path, 'wt', encoding='utf-8') as f:
         f.write(paragraph_with_footer)
 
-    minified_html = html.prettify(formatter=None)
+    minified_html = html.prettify(formatter="minimal")
     with open(f'{path}.html', 'wt', encoding='utf-8') as f:
         f.write(minified_html.__str__())
 
