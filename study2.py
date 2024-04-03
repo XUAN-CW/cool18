@@ -138,8 +138,10 @@ def rilla_save(path, para, url,html):
     paragraph_with_footer = para + '\n\n' + f'[页_面_来_源]({url})'
     with open(path, 'wt', encoding='utf-8') as f:
         f.write(paragraph_with_footer)
+
+    minified_html = html.prettify(formatter=None)
     with open(f'{path}.html', 'wt', encoding='utf-8') as f:
-        f.write(html)
+        f.write(minified_html.__str__())
 
 def rename_and_savetext(folder, txt_name, para, url,html):
     '''
