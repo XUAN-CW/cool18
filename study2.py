@@ -1,5 +1,3 @@
-# 2022年10月30日
-
 import os
 import requests
 from bs4 import BeautifulSoup
