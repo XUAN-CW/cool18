@@ -10,7 +10,7 @@ HEADER = {
     ' Gecko/20100101 Firefox/106.0',
 }
 
-SAVE_DIRECTORY = r'../cool18_download'
+SAVE_DIRECTORY = r'cool18_download'
 
 # when opening the vpn, call this function 
 def get_correct_proxies():
