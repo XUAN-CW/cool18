@@ -1,14 +1,15 @@
 import os
 import requests
-#from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 from urllib.request import getproxies
 
 HEADER = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0)'
-    ' Gecko/20100101 Firefox/106.0',
+                  ' Gecko/20100101 Firefox/106.0',
 }
 
 SAVE_DIRECTORY = r'cool18_download'
+
 
 # when opening the vpn, call this function
 def get_correct_proxies():
@@ -26,9 +27,10 @@ def get_correct_proxies():
     except Exception:
         return {}
 
+
 def get_soup_from_webpage(url, header):
     proxies = get_correct_proxies()
-    response = requests.get(url, headers=header, timeout=15,proxies=proxies)
+    response = requests.get(url, headers=header, timeout=15, proxies=proxies)
     if 'classbk' in url:
         response.encoding = 'gb2312'
     else:
@@ -318,7 +320,7 @@ def crawl(header):
                             except:
                                 print("算了，跳过不理")
             except Exception as e:
-                print(f"{article}挂了，先记下来，回头再算账",e)
+                print(f"{article}挂了，先记下来，回头再算账", e)
                 failed_log_list.append(article)
                 for line in failed_log_list:
                     with open('try_later.txt', 'a', encoding='utf-8') as fd:
@@ -327,8 +329,7 @@ def crawl(header):
 
 if __name__ == '__main__':
 
-
-# Check if the directory does not exist
+    # Check if the directory does not exist
     if not os.path.exists(SAVE_DIRECTORY):
         # Create the directory
         os.makedirs(SAVE_DIRECTORY)
