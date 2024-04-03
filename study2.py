@@ -1,6 +1,6 @@
 import os
 import requests
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 from urllib.request import getproxies
 
 HEADER = {
@@ -10,14 +10,14 @@ HEADER = {
 
 SAVE_DIRECTORY = r'cool18_download'
 
-# when opening the vpn, call this function 
+# when opening the vpn, call this function
 def get_correct_proxies():
     headers = getproxies()
     try:
         if (len(headers) <= 0):
             proxies = {
-                'http': 'http://ts464c:20171',
-                'https': 'http://ts464c:20172',
+                'http': 'http://v2raya:20171',
+                'https': 'http://v2raya:20172',
             }
             return proxies
         if (headers.get('https') is not None):
