@@ -17,7 +17,11 @@ def get_correct_proxies():
     headers = getproxies()
     try:
         if (len(headers) <= 0):
-            return {}
+            proxies = {
+                'http': 'http://ts464c:20171',
+                'https': 'http://ts464c:20172',
+            }
+            return proxies
         if (headers.get('https') is not None):
             headers['https'] = headers['https'].replace('https', 'http')
         return headers
@@ -315,8 +319,8 @@ def crawl(header):
                                         secondary_folder_path, second_txt_name, body_text, second_level)
                             except:
                                 print("算了，跳过不理")
-            except:
-                print(f"{article}挂了，先记下来，回头再算账")
+            except Exception as e:
+                print(f"{article}挂了，先记下来，回头再算账",e)
                 failed_log_list.append(article)
                 for line in failed_log_list:
                     with open('try_later.txt', 'a', encoding='utf-8') as fd:
